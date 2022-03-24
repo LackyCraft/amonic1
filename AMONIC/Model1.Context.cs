@@ -44,6 +44,7 @@ namespace AMONIC
         public virtual DbSet<Roles> Roles { get; set; }
         public virtual DbSet<Routes> Routes { get; set; }
         public virtual DbSet<Schedules> Schedules { get; set; }
+        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<Users> Users { get; set; }
     }
 }

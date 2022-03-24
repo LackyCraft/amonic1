@@ -108,6 +108,9 @@
     <Compile Include="RolePage\Admin\EditUsersWindow.xaml.cs">
       <DependentUpon>EditUsersWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="RolePage\Manager\SheduleEditWindow.xaml.cs">
+      <DependentUpon>SheduleEditWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Roles.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -115,6 +118,9 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Schedules.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sysdiagrams.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="UserMainWindow.xaml.cs">
@@ -152,6 +158,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="RolePage\Admin\EditUsersWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="RolePage\Manager\SheduleEditWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -214,9 +224,6 @@
       <DependentUpon>Model1.edmx</DependentUpon>
       <LastGenOutput>Model1.cs</LastGenOutput>
     </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="RolePage\Manager\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

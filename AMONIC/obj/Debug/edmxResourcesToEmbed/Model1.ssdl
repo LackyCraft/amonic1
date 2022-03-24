@@ -33,7 +33,7 @@
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="TYPE" Type="nvarchar" MaxLength="50" />
-    <Property Name="description" Type="nvarchar" MaxLength="50" />
+    <Property Name="description" Type="nvarchar" MaxLength="500" />
     <Property Name="DataTime" Type="datetime" />
     <Property Name="IdUser" Type="int" />
   </EntityType>
@@ -76,12 +76,24 @@
     <Property Name="EconomyPrice" Type="money" Nullable="false" />
     <Property Name="Confirmed" Type="bit" Nullable="false" />
     <Property Name="FlightNumber" Type="nvarchar" MaxLength="10" />
+    <Property Name="BuisnesPrice" Type="money" />
+    <Property Name="FirstClass" Type="money" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
   </EntityType>
   <EntityType Name="Users">
     <Key>
       <PropertyRef Name="ID" />
     </Key>
-    <Property Name="ID" Type="int" Nullable="false" />
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="RoleID" Type="int" Nullable="false" />
     <Property Name="Email" Type="nvarchar" MaxLength="150" Nullable="false" />
     <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
@@ -208,6 +220,7 @@
     <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Routes" EntityType="Self.Routes" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Schedules" EntityType="Self.Schedules" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="FK_AirPort_Country" Association="Self.FK_AirPort_Country">
       <End Role="Countries" EntitySet="Countries" />

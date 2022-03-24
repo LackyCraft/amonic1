@@ -86,3 +86,5 @@ D:\amonic1\AMONIC\obj\Debug\UserMainWindow.g.cs
 D:\amonic1\AMONIC\obj\Debug\UserMainWindow.baml
 D:\amonic1\AMONIC\obj\Debug\ManagerMainWindow.g.cs
 D:\amonic1\AMONIC\obj\Debug\ManagerMainWindow.baml
+D:\amonic1\AMONIC\obj\Debug\RolePage\Manager\SheduleEditWindow.g.cs
+D:\amonic1\AMONIC\obj\Debug\RolePage\Manager\SheduleEditWindow.baml

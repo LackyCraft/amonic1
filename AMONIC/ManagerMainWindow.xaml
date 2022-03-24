@@ -8,6 +8,10 @@
         Title="Manage Flight Schuldules" Height="450" Width="800" MinHeight="450" MinWidth="800"
         Icon="/Image/logo_color_blue.png">
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="97*"/>
+            <ColumnDefinition Width="2*"/>
+        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="30"/>
             <RowDefinition Height="70"/>
@@ -16,18 +20,18 @@
         </Grid.RowDefinitions>
 
         <StackPanel HorizontalAlignment="Left" Orientation="Horizontal" Margin="15,0,0,0"/>
-        <StackPanel Grid.Row="1">
+        <StackPanel Grid.Row="1" Grid.ColumnSpan="2">
             <StackPanel Orientation="Horizontal"  Margin="15,0,0,0" Height="28" HorizontalAlignment="Right">
-            <TextBlock Text="From" VerticalAlignment="Center"/>
+                <TextBlock Text="From" VerticalAlignment="Center"/>
                 <ComboBox SelectionChanged="selectionChangedComboBoxAiraports" x:Name="ComboBoxAirportFrom" Width="100" Margin="15,0,0,0" DisplayMemberPath="Name" SelectedValuePath="ID"/>
 
                 <TextBlock Text="To" VerticalAlignment="Center"  Margin="15,0,0,0"/>
                 <ComboBox SelectionChanged="selectionChangedComboBoxAiraports"  x:Name="ComboBoxAirportTo" Width="100" Margin="15,0,15,0" DisplayMemberPath="Name" SelectedValuePath="ID"/>
             </StackPanel>
-            
+
             <StackPanel Orientation="Horizontal"  Margin="15,10,0,0" Height="28" HorizontalAlignment="Right">
                 <TextBlock Text="Outbound" VerticalAlignment="Center"/>
-                
+
                 <DatePicker x:Name="DatePickerOutbound" Width="100" Margin="15,0,0,0"/>
 
                 <TextBlock Text="Flight Nuber" Margin="15,0,0,0" VerticalAlignment="Center"/>
@@ -39,7 +43,7 @@
 
         </StackPanel>
 
-        <DataGrid x:Name="DataGridShuldesList" AutoGenerateColumns="False" Grid.Row="2" Margin="15">
+        <DataGrid x:Name="DataGridShuldesList" AutoGenerateColumns="False" Grid.Row="2" Margin="15" Grid.ColumnSpan="2">
             <DataGrid.CellStyle>
                 <Style TargetType="{x:Type DataGridCell}">
                     <Style.Triggers>
@@ -67,7 +71,7 @@
             </DataGrid.Columns>
         </DataGrid>
 
-        <StackPanel Grid.Row="3" Orientation="Horizontal">
+        <StackPanel Grid.Row="3" Orientation="Horizontal" Grid.ColumnSpan="2">
             <Button Click="clickCancelFlight" Content="Cancel Flight" HorizontalAlignment="Center" Margin="15,0,0,0" VerticalAlignment="Center" Height="30" Width="200"/>
             <Button Click="clickEdit" Content="Edit flightn" Margin="15,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" Height="30" Width="200"/>
 

@@ -12,20 +12,12 @@ namespace AMONIC
     using System;
     using System.Collections.Generic;
     
-    public partial class Schedules
+    public partial class sysdiagrams
     {
-        public int ID { get; set; }
-        public System.DateTime Date { get; set; }
-        public System.TimeSpan Time { get; set; }
-        public int AircraftID { get; set; }
-        public int RouteID { get; set; }
-        public decimal EconomyPrice { get; set; }
-        public bool Confirmed { get; set; }
-        public string FlightNumber { get; set; }
-        public Nullable<decimal> BuisnesPrice { get; set; }
-        public Nullable<decimal> FirstClass { get; set; }
-    
-        public virtual Aircrafts Aircrafts { get; set; }
-        public virtual Routes Routes { get; set; }
+        public string name { get; set; }
+        public int principal_id { get; set; }
+        public int diagram_id { get; set; }
+        public Nullable<int> version { get; set; }
+        public byte[] definition { get; set; }
     }
 }

@@ -75,7 +75,6 @@ namespace AMONIC
                 catch
                 {
                     MessageBox.Show("Warning 500\n Потеряно соединение с базой данных");
-                    MessageBox.Show("Ваша учетная запись была заблокирована!");
                     LogService log = new LogService();
                     log.DataTime = DateTime.Now;
                     log.TYPE = "WARNING";
@@ -92,32 +91,8 @@ namespace AMONIC
         {
             if (DataGridUsersList.SelectedItems.Count > 0)
             {
-                /*
-                try
-                {
-                    for (int i = 0; i < DataGridUsersList.SelectedItems.Count; i++)
-                    {
-                        if ((DataGridUsersList.SelectedItems[i] as Users).RoleID == 1)
-                            (DataGridUsersList.SelectedItems[i] as Users).RoleID = 2;
-                        else
-                            (DataGridUsersList.SelectedItems[i] as Users).RoleID = 1;
-                        DBEntities.GetContext().SaveChanges();
-
-                        LogService log = new LogService();
-                        log.DataTime = DateTime.Now;
-                        log.TYPE = "EDIT_USER";
-                        log.description = "Отредактирован пользователь (Edit RoleID)" + (DataGridUsersList.SelectedItems[i] as Users).ID.ToString() + "";
-                        log.IdUser = int.Parse(Application.Current.Resources["UserId"].ToString());
-
-                        DBEntities.GetContext().LogService.Add(log);
-                        DBEntities.GetContext().SaveChanges();
-                    }
-                }
-                catch
-                {
-                    MessageBox.Show("Warning 500\n Потеряно соединение с базой данных");
-                } */
                 AMONIC.RolePage.Admin.EditUsersWindow newPage = new AMONIC.RolePage.Admin.EditUsersWindow(DataGridUsersList.SelectedItem as Users);
+                newPage.Owner = this;
                 newPage.Show();
                 drawDataGrid();
             }

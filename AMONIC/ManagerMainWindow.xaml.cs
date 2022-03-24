@@ -19,17 +19,24 @@ namespace AMONIC
     /// </summary>
     public partial class ManagerMainWindow : Window
     {
+        List<Schedules> schedulesList;
 
-        List<Schedules> schedulesList = DBEntities.GetContext().Schedules.ToList();
 
         public ManagerMainWindow()
         {
             InitializeComponent();
-            List<string> sortList = new List<string>() {"Дата","Цена","Эконом места","Статус: подтвержден","Статус не подтвержден"};
-            ComboBoxAirportFrom.ItemsSource = DBEntities.GetContext().Airports.ToList();
-            ComboBoxAirportTo.ItemsSource = DBEntities.GetContext().Airports.ToList();
-            ComboBoxSortBy.ItemsSource = sortList.ToList();
-            drawDataGrid();
+            try
+            {
+                List<string> sortList = new List<string>() { "Дата", "Цена", "Эконом места", "Статус: подтвержден", "Статус не подтвержден" };
+                ComboBoxAirportFrom.ItemsSource = DBEntities.GetContext().Airports.ToList();
+                ComboBoxAirportTo.ItemsSource = DBEntities.GetContext().Airports.ToList();
+                schedulesList = DBEntities.GetContext().Schedules.ToList();
+                drawDataGrid();
+            }
+            catch
+            {
+                MessageBox.Show("Warning 500\n Потеряно соединение с базой данных");
+            }
         }
 
         public void drawDataGrid()
@@ -43,23 +50,39 @@ namespace AMONIC
 
         private void clickCancelFlight(object sender, RoutedEventArgs e)
         {
-            if (DataGridShuldesList.SelectedItems.Count > 0)
+            try
             {
-                foreach (Schedules shedulesEdit in DataGridShuldesList.SelectedItems)
+                if (DataGridShuldesList.SelectedItems.Count > 0)
                 {
-                    if(shedulesEdit.Confirmed)
-                    shedulesEdit.Confirmed = false;
-                    else
-                    shedulesEdit.Confirmed = true;
+                    foreach (Schedules shedulesEdit in DataGridShuldesList.SelectedItems)
+                    {
+                        if (shedulesEdit.Confirmed)
+                            shedulesEdit.Confirmed = false;
+                        else
+                            shedulesEdit.Confirmed = true;
 
+                    }
                 }
+                DBEntities.GetContext().SaveChanges();
             }
-            DBEntities.GetContext().SaveChanges();
+            catch
+            {
+                    MessageBox.Show("Warning 500\n Потеряно соединение с базой данных");
+                    LogService log = new LogService();
+                    log.DataTime = DateTime.Now;
+                    log.TYPE = "WARNING";
+                    log.description = "Потеряно соединение с базой данных при быстром редактировании (Активности рейса) Confirmed на странице менеджера";
+                    log.IdUser = int.Parse(Application.Current.Resources["UserId"].ToString());
+                    DBEntities.GetContext().LogService.Add(log);
+                    DBEntities.GetContext().SaveChanges();
+            }
             drawDataGrid();
         }
         private void clickEdit(object sender, RoutedEventArgs e)
         {
-
+            AMONIC.RolePage.Manager.SheduleEditWindow newPage = new AMONIC.RolePage.Manager.SheduleEditWindow(DataGridShuldesList.SelectedItem as Schedules);
+            newPage.Owner = this;
+            newPage.Show();
         }
 
         private void clickImport(object sender, RoutedEventArgs e)
@@ -87,7 +110,6 @@ namespace AMONIC
         {
             ComboBoxAirportFrom.SelectedItem = null;
             ComboBoxAirportTo.SelectedItem = null;
-            ComboBoxSortBy.SelectedItem = null;
             DatePickerOutbound.SelectedDate = null;
             TextBoxFlightNyber.Text = "";
             schedulesList = DBEntities.GetContext().Schedules.ToList();
@@ -96,26 +118,47 @@ namespace AMONIC
 
         private void clickApply(object sender, RoutedEventArgs e)
         {
-            if (ComboBoxAirportFrom.SelectedIndex != -1)
-            {
-                int idAirportsFrom = int.Parse(ComboBoxAirportFrom.SelectedValue.ToString());
-                schedulesList = schedulesList.Where(i => i.Routes.Airports.ID == idAirportsFrom).ToList();
-            }
-            if (ComboBoxAirportTo.SelectedIndex != -1)
-            {
-                int idAirportsTo = int.Parse(ComboBoxAirportTo.SelectedValue.ToString());
-                schedulesList = schedulesList.Where(i => i.Routes.Airports1.ID == idAirportsTo).ToList();
-            }
+            try
+            { 
+                if (ComboBoxAirportFrom.SelectedIndex != -1)
+                {
+                    int idAirportsFrom = int.Parse(ComboBoxAirportFrom.SelectedValue.ToString());
+                    schedulesList = schedulesList.Where(i => i.Routes.Airports.ID == idAirportsFrom).ToList();
+                }
+                if (ComboBoxAirportTo.SelectedIndex != -1)
+                {
+                    int idAirportsTo = int.Parse(ComboBoxAirportTo.SelectedValue.ToString());
+                    schedulesList = schedulesList.Where(i => i.Routes.Airports1.ID == idAirportsTo).ToList();
+                }
 
-            DateTime dateToSelect;
-            if (DateTime.TryParse(DatePickerOutbound.SelectedDate.ToString(), out dateToSelect))
-            {
-                schedulesList = schedulesList.Where(i => i.Date == dateToSelect).ToList();
-            }
+                DateTime dateToSelect;
+                
+                if (DateTime.TryParse(DatePickerOutbound.SelectedDate.ToString(), out dateToSelect))
+                {
+                    schedulesList = schedulesList.Where(i => i.Date == dateToSelect).ToList();
+                }
 
-            if (TextBoxFlightNyber.Text.Length > 1)
+                if (TextBoxFlightNyber.Text.Length > 1)
+                {
+                    schedulesList = schedulesList.Where(i => i.Aircrafts.MakeModel.Contains(TextBoxFlightNyber.Text)).ToList();
+                }
+            }
+            catch
             {
-                schedulesList = schedulesList.Where(i => i.Aircrafts.MakeModel.Contains(TextBoxFlightNyber.Text)).ToList();
+                MessageBox.Show("Warning 422\n Ошибка при обработке поиска");
+                    ComboBoxAirportFrom.SelectedItem = null;
+                    ComboBoxAirportTo.SelectedItem = null;
+                    DatePickerOutbound.SelectedDate = null;
+                    TextBoxFlightNyber.Text = "";
+                    schedulesList = DBEntities.GetContext().Schedules.ToList();
+                    drawDataGrid();
+                LogService log = new LogService();
+                log.DataTime = DateTime.Now;
+                log.TYPE = "WARNING";
+                log.description = "Ошибка при обработке функции фильтрации на странице менеджера";
+                log.IdUser = int.Parse(Application.Current.Resources["UserId"].ToString());
+                DBEntities.GetContext().LogService.Add(log);
+                DBEntities.GetContext().SaveChanges();
             }
 
             drawDataGrid();
