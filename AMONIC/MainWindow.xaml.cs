@@ -32,8 +32,8 @@ namespace AMONIC
 
         private void clickAuth(object sender, RoutedEventArgs e)
         {
-            try
-            {
+            //try
+            //{
                 List<Users> userSearch = DBEntities.GetContext().Users.Where(i => (i.Email == TextBoxUsername.Text && i.Password == PasswordBoxPassword.Password.ToString())).ToList();
                 if (userSearch.Count > 0)
                 {
@@ -59,6 +59,10 @@ namespace AMONIC
                         {
                             (new UserMainWindow()).Show();
                         }
+                        if (Application.Current.Resources["RoleId"].ToString() == "3")
+                        {
+                            (new ManagerMainWindow()).Show();
+                        }
 
                         this.Close();
 
@@ -79,11 +83,11 @@ namespace AMONIC
                 {
                     MessageBox.Show("Веден неверный логин или пароль!");
                 }
-            }
-            catch
-            {
-                MessageBox.Show("Warning 500\n Потеряно соединение с базой данных");
-            }
+            //}
+            //catch
+            //{
+            //    MessageBox.Show("Warning 500\n Потеряно соединение с базой данных");
+            //}
 
         }
 

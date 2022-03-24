@@ -15,7 +15,7 @@ namespace AMONIC
     public partial class Schedules
     {
         public int ID { get; set; }
-        public System.DateTime Date { get; set; }
+        public DateTime Date { get; set; }
         public System.TimeSpan Time { get; set; }
         public int AircraftID { get; set; }
         public int RouteID { get; set; }
