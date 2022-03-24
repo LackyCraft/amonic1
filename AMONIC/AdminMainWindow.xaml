@@ -26,7 +26,6 @@
         </StackPanel>
 
         <DataGrid x:Name="DataGridUsersList" AutoGenerateColumns="False" Grid.Row="2" Margin="15">
-
             <DataGrid.CellStyle>
                 <Style TargetType="{x:Type DataGridCell}">
                     <Style.Triggers>

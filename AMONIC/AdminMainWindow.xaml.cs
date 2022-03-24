@@ -75,15 +75,24 @@ namespace AMONIC
                 catch
                 {
                     MessageBox.Show("Warning 500\n Потеряно соединение с базой данных");
+                    MessageBox.Show("Ваша учетная запись была заблокирована!");
+                    LogService log = new LogService();
+                    log.DataTime = DateTime.Now;
+                    log.TYPE = "WARNING";
+                    log.description = "Потеряно соединение с базой данных на странице администратора";
+                    log.IdUser = int.Parse(Application.Current.Resources["UserId"].ToString());
+                    DBEntities.GetContext().LogService.Add(log);
+                    DBEntities.GetContext().SaveChanges();
                 }
                 drawDataGrid();
-            }
+            } 
         }
 
         private void changeRoleSelectedUser(object sender, RoutedEventArgs e)
         {
             if (DataGridUsersList.SelectedItems.Count > 0)
             {
+                /*
                 try
                 {
                     for (int i = 0; i < DataGridUsersList.SelectedItems.Count; i++)
@@ -107,7 +116,9 @@ namespace AMONIC
                 catch
                 {
                     MessageBox.Show("Warning 500\n Потеряно соединение с базой данных");
-                }
+                } */
+                AMONIC.RolePage.Admin.EditUsersWindow newPage = new AMONIC.RolePage.Admin.EditUsersWindow(DataGridUsersList.SelectedItem as Users);
+                newPage.Show();
                 drawDataGrid();
             }
         }

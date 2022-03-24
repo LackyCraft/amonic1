@@ -1,0 +1,88 @@
+﻿<Window x:Class="AMONIC.ManagerMainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:AMONIC"
+        mc:Ignorable="d"
+        Title="Manage Flight Schuldules" Height="450" Width="800" MinHeight="450" MinWidth="800"
+        Icon="/Image/logo_color_blue.png">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="70"/>
+            <RowDefinition/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel HorizontalAlignment="Left" Orientation="Horizontal" Margin="15,0,0,0">
+            <Button Height="20" Click="clickAddUsers" Content="Add user" Width="100"/>
+            <Button Height="20" Content="Exit" Click="clickExit" Width="100" Margin="15,0,0,0"/>
+        </StackPanel>
+        <StackPanel Grid.Row="1">
+            <StackPanel Orientation="Horizontal"  Margin="15,0,0,0" Height="28" HorizontalAlignment="Right">
+            <TextBlock Text="From" VerticalAlignment="Center"/>
+            <ComboBox SelectionChanged="selectionChangedComboBoxFrom" x:Name="ComboBoxAirportFrom" Width="100" Margin="15,0,0,0" DisplayMemberPath="Title" SelectedValuePath="ID"/>
+
+                <TextBlock Text="To" VerticalAlignment="Center"  Margin="15,0,0,0"/>
+                <ComboBox SelectionChanged="selectionChangedComboBoxTo" x:Name="ComboBoxAirportTo" Width="100" Margin="15,0,0,0" DisplayMemberPath="Title" SelectedValuePath="ID"/>
+
+                <TextBlock Text="Sort by" VerticalAlignment="Center"  Margin="15,0,0,0"/>
+                <ComboBox SelectionChanged="selectionChangedComboBoxSortBy" x:Name="ComboBoxSortBy" Width="100" Margin="15,0,15,0" DisplayMemberPath="Title" SelectedValuePath="ID"/>
+            </StackPanel>
+            
+            <StackPanel Orientation="Horizontal"  Margin="15,10,0,0" Height="28" HorizontalAlignment="Right">
+                <TextBlock Text="Outbound" VerticalAlignment="Center"/>
+                <TextBox x:Name="TextBoxOutBound" Width="100" Margin="15,0,0,0"/>
+
+                <TextBlock Text="Flight Nuber" Margin="15,0,0,0" VerticalAlignment="Center"/>
+                <TextBox x:Name="TextBoxFlightNyber" Width="100" Margin="15,0,0,0"/>
+
+                <Button Content="Apply"  Margin="15,0,15,0" Width="100"/>
+
+            </StackPanel>
+
+        </StackPanel>
+
+        <DataGrid x:Name="DataGridUsersList" AutoGenerateColumns="False" Grid.Row="2" Margin="15">
+            <DataGrid.CellStyle>
+                <Style TargetType="{x:Type DataGridCell}">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding RoleID}" Value="1">
+                            <Setter Property="Foreground" Value="Orange"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Active}" Value="False">
+                            <Setter Property="Foreground" Value="Red" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </DataGrid.CellStyle>
+
+            <DataGrid.Columns>
+                <DataGridTextColumn IsReadOnly="True" Width="*" Header="Логин" Binding="{Binding Email}"/>
+                <DataGridTextColumn IsReadOnly="True" Width="*" Header="Имя" Binding="{Binding LastName}"/>
+                <DataGridTextColumn IsReadOnly="True" Width="*" Header="Фамилия" Binding="{Binding FirstName}"/>
+
+                <DataGridTextColumn IsReadOnly="True" Width="*" Header="Офис" Binding="{Binding Offices.Title}"/>
+                <DataGridTextColumn IsReadOnly="True" Width="*" Header="Роль" Binding="{Binding Roles.Title}"/>
+                <!--
+                <DataGridTemplateColumn Width="100" Header="Редактирование">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="Edit" Uid="{Binding UserId}" Width="100" Click="EditUser"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn> -->
+
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <StackPanel Grid.Row="3" Orientation="Horizontal">
+            <Button Click="clickCanselFlight" Content="Change Role" HorizontalAlignment="Center" Margin="15,0,0,0" VerticalAlignment="Center" Height="30" Width="200"/>
+            <Button Click="clickEdit" Content="Edit flightn" Margin="15,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" Height="30" Width="200"/>
+
+            <Button Click="clickImport" Content="Import change" Margin="15,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" Height="30" Width="200"/>
+        </StackPanel>
+
+    </Grid>
+</Window>

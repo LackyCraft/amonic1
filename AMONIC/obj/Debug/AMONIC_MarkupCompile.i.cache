@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-D:\AMONIC\AMONIC\obj\Debug\
+D:\amonic1\AMONIC\obj\Debug\
 AMONIC
 none
 false
 DEBUG;TRACE
-D:\AMONIC\AMONIC\App.xaml
-4190672743
+D:\amonic1\AMONIC\App.xaml
+7-2042172702
 21750853300
-20-2141369612
-201527046418
-RolePage\Admin\AddUserWindow.xaml;AdminMainWindow.xaml;Dictionary1.xaml;MainWindow.xaml;
+231973679148
+20-1061583056
+ManagerMainWindow.xaml;RolePage\Admin\AddUserWindow.xaml;AdminMainWindow.xaml;Dictionary1.xaml;MainWindow.xaml;RolePage\Admin\EditUsersWindow.xaml;UserMainWindow.xaml;
 
 True
 

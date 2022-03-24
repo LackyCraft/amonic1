@@ -42,12 +42,6 @@ namespace AMONIC
                         Application.Current.Resources["UserId"] = userSearch[0].ID.ToString();
                         Application.Current.Resources["RoleId"] = userSearch[0].RoleID.ToString();
 
-                        if (Application.Current.Resources["RoleId"].ToString() == "1")
-                        {
-                            AdminMainWindow AdminPage = new AdminMainWindow();
-                            AdminPage.Show();
-                        }
-
                         LogService log = new LogService();
                         log.DataTime = DateTime.Now;
                         log.TYPE = "LOGIN";
@@ -55,6 +49,16 @@ namespace AMONIC
 
                         DBEntities.GetContext().LogService.Add(log);
                         DBEntities.GetContext().SaveChanges();
+
+                        if (Application.Current.Resources["RoleId"].ToString() == "1")
+                        {
+                            AdminMainWindow AdminPage = new AdminMainWindow();
+                            AdminPage.Show();
+                        }
+                        if (Application.Current.Resources["RoleId"].ToString() == "2")
+                        {
+                            (new UserMainWindow()).Show();
+                        }
 
                         this.Close();
 

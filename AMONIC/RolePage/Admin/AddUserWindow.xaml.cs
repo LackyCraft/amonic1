@@ -88,6 +88,14 @@ namespace AMONIC.RolePage.Admin
                 catch
                 {
                     MessageBox.Show("Warning 500\n Потеряно соединение с базой данных");
+                    MessageBox.Show("Ваша учетная запись была заблокирована!");
+                    LogService log = new LogService();
+                    log.DataTime = DateTime.Now;
+                    log.TYPE = "WARNING";
+                    log.description = "Потеряно соединение с базой данных при создании пользователя";
+                    log.IdUser = int.Parse(Application.Current.Resources["UserId"].ToString());
+                    DBEntities.GetContext().LogService.Add(log);
+                    DBEntities.GetContext().SaveChanges();
                 }
 
             }
