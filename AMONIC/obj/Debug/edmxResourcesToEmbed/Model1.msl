@@ -23,6 +23,14 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="CabinTypes">
+      <EntityTypeMapping TypeName="Session2_XXModel.CabinTypes">
+        <MappingFragment StoreEntitySet="CabinTypes">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="Countries">
       <EntityTypeMapping TypeName="Session2_XXModel.Countries">
         <MappingFragment StoreEntitySet="Countries">
@@ -83,8 +91,6 @@
           <ScalarProperty Name="EconomyPrice" ColumnName="EconomyPrice" />
           <ScalarProperty Name="Confirmed" ColumnName="Confirmed" />
           <ScalarProperty Name="FlightNumber" ColumnName="FlightNumber" />
-          <ScalarProperty Name="BuisnesPrice" ColumnName="BuisnesPrice" />
-          <ScalarProperty Name="FirstClass" ColumnName="FirstClass" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -96,6 +102,24 @@
           <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
           <ScalarProperty Name="version" ColumnName="version" />
           <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Tickets">
+      <EntityTypeMapping TypeName="Session2_XXModel.Tickets">
+        <MappingFragment StoreEntitySet="Tickets">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="ScheduleID" ColumnName="ScheduleID" />
+          <ScalarProperty Name="CabinTypeID" ColumnName="CabinTypeID" />
+          <ScalarProperty Name="Firstname" ColumnName="Firstname" />
+          <ScalarProperty Name="Lastname" ColumnName="Lastname" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="PassportNumber" ColumnName="PassportNumber" />
+          <ScalarProperty Name="PassportCountryID" ColumnName="PassportCountryID" />
+          <ScalarProperty Name="BookingReference" ColumnName="BookingReference" />
+          <ScalarProperty Name="Confirmed" ColumnName="Confirmed" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

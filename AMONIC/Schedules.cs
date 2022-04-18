@@ -14,6 +14,12 @@ namespace AMONIC
     
     public partial class Schedules
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Schedules()
+        {
+            this.Tickets = new HashSet<Tickets>();
+        }
+    
         public int ID { get; set; }
         public System.DateTime Date { get; set; }
         public System.TimeSpan Time { get; set; }
@@ -22,10 +28,10 @@ namespace AMONIC
         public decimal EconomyPrice { get; set; }
         public bool Confirmed { get; set; }
         public string FlightNumber { get; set; }
-        public Nullable<decimal> BuisnesPrice { get; set; }
-        public Nullable<decimal> FirstClass { get; set; }
     
         public virtual Aircrafts Aircrafts { get; set; }
         public virtual Routes Routes { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Tickets> Tickets { get; set; }
     }
 }

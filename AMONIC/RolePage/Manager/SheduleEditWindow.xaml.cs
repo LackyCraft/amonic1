@@ -65,8 +65,8 @@ namespace AMONIC.RolePage.Manager
                     editshedulesSelectedItem.Date = dateToSelect;
                     editshedulesSelectedItem.Time = time;
                     editshedulesSelectedItem.EconomyPrice = price;
-                    editshedulesSelectedItem.BuisnesPrice = Math.Round(price + price/100*30);
-                    editshedulesSelectedItem.FirstClass = Math.Round(price + (price / 100 * 30)/100*35);
+                    //editshedulesSelectedItem.BuisnesPrice = Math.Round(price + price/100*30);
+                    //editshedulesSelectedItem.FirstClass = Math.Round(price + (price / 100 * 30)/100*35);
                     DBEntities.GetContext().SaveChanges();
 
                     MessageBox.Show("Обвновление данных прошло успешно");
