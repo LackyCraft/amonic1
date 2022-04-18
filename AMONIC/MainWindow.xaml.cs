@@ -63,8 +63,12 @@ namespace AMONIC
                         {
                             (new ManagerMainWindow()).Show();
                         }
+                        if (Application.Current.Resources["RoleId"].ToString() == "4")
+                        {
+                            (new Operator()).Show();
+                        }
 
-                        this.Close();
+                    this.Close();
 
                     }
                     else

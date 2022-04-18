@@ -88,3 +88,7 @@ D:\amonic1\AMONIC\obj\Debug\ManagerMainWindow.g.cs
 D:\amonic1\AMONIC\obj\Debug\ManagerMainWindow.baml
 D:\amonic1\AMONIC\obj\Debug\RolePage\Manager\SheduleEditWindow.g.cs
 D:\amonic1\AMONIC\obj\Debug\RolePage\Manager\SheduleEditWindow.baml
+D:\amonic1\AMONIC\obj\Debug\Operator.g.cs
+D:\amonic1\AMONIC\obj\Debug\Operator.baml
+D:\amonic1\AMONIC\obj\Debug\BookingWindows.g.cs
+D:\amonic1\AMONIC\obj\Debug\BookingWindows.baml

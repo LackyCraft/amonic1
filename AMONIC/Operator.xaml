@@ -5,7 +5,6 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:AMONIC"
         mc:Ignorable="d"
-        mc:Ignorable="d"
         Title="Search for flights" Height="600" Width="800" MinHeight="600" MinWidth="800"
         Icon="/Image/logo_color_blue.png">
     <Grid>
@@ -30,7 +29,7 @@
                 <ComboBox SelectionChanged="selectionChangedComboBoxAiraports"  x:Name="ComboBoxAirportTo" Width="100" Margin="15,0,15,0" DisplayMemberPath="Name" SelectedValuePath="ID"/>
 
                 <TextBlock Text="Cabin Type" VerticalAlignment="Center"  Margin="15,0,0,0"/>
-                <ComboBox SelectionChanged="selectionChangedCabinType"  x:Name="ComboBoxCabinType" Width="100" Margin="15,0,15,0" DisplayMemberPath="Name" SelectedValuePath="ID"/>
+                <ComboBox  x:Name="ComboBoxCabinType" Width="100" Margin="15,0,15,0" DisplayMemberPath="Name" SelectedValuePath="ID"/>
 
             </StackPanel>
 
@@ -47,23 +46,13 @@
 
 
 
-
+                <Button Content="Reset filter" Click="clickReset"  Margin="15,0,15,0" Width="100"/>
                 <Button Content="Apply" Click="clickApply"  Margin="15,0,15,0" Width="100"/>
             </StackPanel>
 
         </StackPanel>
 
         <DataGrid x:Name="DataGridShuldesList" AutoGenerateColumns="False" Grid.Row="1" Margin="15" Grid.ColumnSpan="2">
-            <DataGrid.CellStyle>
-                <Style TargetType="{x:Type DataGridCell}">
-                    <Style.Triggers>
-                        <DataTrigger Binding="{Binding Confirmed}" Value="false">
-                            <Setter Property="Foreground" Value="Red"/>
-                        </DataTrigger>
-                    </Style.Triggers>
-                </Style>
-            </DataGrid.CellStyle>
-
             <DataGrid.Columns>
                 <DataGridTextColumn IsReadOnly="True" Width="*" Header="Date" Binding="{Binding Date, StringFormat={}{0:dd/MM/yyyy}}"/>
                 <DataGridTextColumn IsReadOnly="True" Width="*" Header="Time" Binding="{Binding Time}"/>
@@ -81,11 +70,32 @@
             </DataGrid.Columns>
         </DataGrid>
 
-        <StackPanel Grid.Row="3" Orientation="Horizontal" Grid.ColumnSpan="2">
-            <Button Click="clickCancelFlight" Content="Cancel Flight" HorizontalAlignment="Center" Margin="15,0,0,0" VerticalAlignment="Center" Height="30" Width="200"/>
-            <Button Click="clickEdit" Content="Edit flightn" Margin="15,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" Height="30" Width="200"/>
 
-            <Button Click="clickImport" Content="Import change" Margin="15,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" Height="30" Width="200"/>
+        <DataGrid x:Name="DataGridReturnShuldesList" AutoGenerateColumns="False" Grid.Row="2" Margin="15" Grid.ColumnSpan="2">
+            <DataGrid.Columns>
+                <DataGridTextColumn IsReadOnly="True" Width="*" Header="Date" Binding="{Binding Date, StringFormat={}{0:dd/MM/yyyy}}"/>
+                <DataGridTextColumn IsReadOnly="True" Width="*" Header="Time" Binding="{Binding Time}"/>
+
+                <DataGridTextColumn IsReadOnly="True" Width="*" Header="From" Binding="{Binding Routes.Airports.IATACode}"/>
+                <DataGridTextColumn IsReadOnly="True" Width="*" Header="To" Binding="{Binding Routes.Airports1.IATACode}"/>
+
+                <DataGridTextColumn IsReadOnly="True" Width="*" Header="Flight number" Binding="{Binding Aircrafts.MakeModel}"/>
+                <DataGridTextColumn IsReadOnly="True" Width="*" Header="Aircrafts" Binding="{Binding Aircrafts.Name}"/>
+
+                <DataGridTextColumn IsReadOnly="True" Width="*" Header="EconomyPrice" Binding="{Binding EconomyPrice}"/>
+                <DataGridTextColumn IsReadOnly="True" Width="*" Header="BuisnesPrice" Binding="{Binding EconomyPrice}"/>
+                <DataGridTextColumn IsReadOnly="True" Width="*" Header="FirstClass" Binding="{Binding EconomyPrice}"/>
+
+            </DataGrid.Columns>
+        </DataGrid>
+
+
+        <StackPanel Grid.Row="3" Orientation="Horizontal" Grid.ColumnSpan="2" HorizontalAlignment="Center">
+            <TextBox Text="1" TextAlignment="Center" VerticalAlignment="Center" Height="30" Width="50" x:Name="TextBoxCountPassagers"/>
+            <TextBlock Text="Passengers" Margin="10,0,0,0" TextAlignment="Center" VerticalAlignment="Center"/>
+
+            <Button Width="150" Content="☑ Block Flight" Height="30" Margin="10,0,0,0" Click="buttonBlockFlightClick"/>
+            <Button Width="100" Content="☒ Exit" Height="30" Margin="100,0,0,0" Click="clickClose"/>
         </StackPanel>
 
     </Grid>

@@ -1,6 +1,7 @@
 ﻿
 FD:\amonic1\AMONIC\App.xaml;;
 FD:\amonic1\AMONIC\ManagerMainWindow.xaml;;
+FD:\amonic1\AMONIC\Operator.xaml;;
 FD:\amonic1\AMONIC\RolePage\Admin\AddUserWindow.xaml;;
 FD:\amonic1\AMONIC\AdminMainWindow.xaml;;
 FD:\amonic1\AMONIC\Dictionary1.xaml;;
@@ -8,4 +9,5 @@ FD:\amonic1\AMONIC\MainWindow.xaml;;
 FD:\amonic1\AMONIC\RolePage\Admin\EditUsersWindow.xaml;;
 FD:\amonic1\AMONIC\RolePage\Manager\SheduleEditWindow.xaml;;
 FD:\amonic1\AMONIC\UserMainWindow.xaml;;
+FD:\amonic1\AMONIC\BookingWindows.xaml;;
 
